@@ -1,4 +1,4 @@
-# 📝 Article Management Website
+# 📝 Article Management Website ![GitHub top language](https://img.shields.io/github/languages/top/Hamptooon/article-management-website)
 ## 📄 Description
 This project is a Node.js-based web application designed for managing articles. It features an administrative panel that allows for the addition, editing, and deletion of articles. The project uses MySQL for data storage and includes functionalities for user registration and authentication. It also ensures a consistent user experience with a unified styling across the site.
 ![MainPage](./docs/images/mainPage.jpg)
