@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/css/adminForm.css">
+    <link rel="stylesheet" href="/styles/css/nullStyle.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li class = "logo-text"><a href="/">MAT</a></li>
+                    <div class="nav-links">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="admin-link" style="display: none;"><a href="/admin/users">Админ</a></li>
+                        <li id="auth-link" style="display: none;"><a href="/auth">Вход</a></li>
+                        <!-- <li id="profile-link" style="display: none;"><a href="/profile">Профиль</a></li> -->
+                        <li id="logout-link" style="display: none;"><a href="#"><img src="/img/static/icons/logoutIcon1.svg" alt="Выйти"></a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <main class="content">
+            <section class="content-section">
+                <h1>Админ панель</h1>
+
+               
+
+                <div class="table-buttons">
+                    <a href="/admin/users">Пользователи</a>
+                    <a href="/admin/articles">Статьи</a>
+                    <a href="/admin/categories">Категории</a>
+                    <a href="/admin/feedback">Обратная связь</a>
+                </div>
+                <select id="operation-select" class = "operation-select" name="operation">
+                    <option value="delete">Удалить</option>
+                    <option value="add">Добавить</option>
+                    
+                </select>
+
+                <div id="change-form" class="items-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Имя пользователя</th>
+                                <th>Email</th>
+                                <th>Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr class = "item-row">
+                                    <td><%= user.username %></td>
+                                    <td><%= user.email %></td>
+                                    <td><button class="delete-user red-btn" data-id="<%= user.id %>">Удалить</button></td>
+                                    
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <form id="add-form" style="display: none;" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="username">Имя пользователя</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Роль</label>
+                        <select id="role" name="role" required>
+                            <option value="user">Пользователь</option>
+                            <option value="admin">Администратор</option>
+                        </select>
+                    </div>
+                    <button type="submit">Добавить</button>
+                </form>
+                <p id="response-message" style="display: none;"></p>
+            </section>
+            
+        </main>
+        
+    </div>
+    <script src = "/js/adminUsersPanel.js"></script>
+    <script src="/js/checkAdminRightsPanel.js"></script>
+    <script src="/js/checkAdminRights.js"></script>
+    <script src="/js/logoutBtn.js"></script>
+</body>
+</html>

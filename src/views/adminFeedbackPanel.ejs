@@ -1,0 +1,117 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/css/adminForm.css">
+    <link rel="stylesheet" href="/styles/css/nullStyle.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li class = "logo-text"><a href="/">MAT</a></li>
+                    <div class="nav-links">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="admin-link" style="display: none;"><a href="/admin/users">Админ</a></li>
+                        <li id="auth-link" style="display: none;"><a href="/auth">Вход</a></li>
+                        <!-- <li id="profile-link" style="display: none;"><a href="/profile">Профиль</a></li> -->
+                        <li id="logout-link" style="display: none;"><a href="#"><img src="/img/static/icons/logoutIcon1.svg" alt="Выйти"></a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <main class="content">
+            <section class="content-section">
+                <h1>Админ панель</h1>
+
+               
+
+                <div class="table-buttons">
+                    <a href="/admin/users">Пользователи</a>
+                    <a href="/admin/articles">Статьи</a>
+                    <a href="/admin/categories">Категории</a>
+                    <a href="/admin/feedback">Обратная связь</a>
+                </div>
+
+
+                <div id="change-form" class="items-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>Пользователь</th>
+                                <th>Тема</th>
+                                <th>Описание</th>
+                                <th>Время</th>
+                                <th>Действие</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% feedbacks.forEach(feedback => { %>
+                                <tr class = "item-row">
+                                    <td><%= feedback.user_email %></td>
+                                    <td><%= feedback.title %></td>
+                                    <td><%= feedback.description %></td>
+                                    <td><%= feedback.created_short_time %></td>
+                                    <td><button class="accept-feedback" data-id="<%= feedback.id %>">Принять</button></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                        
+                    </table>
+                   
+                </div>
+
+
+            
+        </main>
+       
+    </div>
+    <script src="/js/checkAdminRightsPanel.js"></script>
+    <script src="/js/checkAdminRights.js"></script>
+
+
+    <script>
+
+    document.querySelectorAll('.accept-feedback').forEach(button => {
+            button.addEventListener('click', () => {
+                const feedbackId = button.getAttribute('data-id');
+                console.log("feedbackId");
+                console.log(feedbackId);
+                handleApproved(feedbackId);
+            });
+        });
+        const handleApproved = async (id) => {
+        try {
+            const response = await fetch(`/feedback/setStatus/${id}`, {
+                method: 'POST',
+            });
+            const result = await response.json();
+            // responseMessage.style.display = 'block';
+            // responseMessage.textContent = result.message;
+            // responseMessage.style.color = result.success ? 'green' : 'red';
+            if (result.success) {
+                document.querySelector(`button[data-id="${id}"]`).closest(".item-row").remove();
+            }
+            // setTimeout(() => {
+            //     responseMessage.style.display = 'none';
+            // }, 5000);
+        } catch (error) {
+            // responseMessage.style.display = 'block';
+            // responseMessage.style.color = 'red';
+            // responseMessage.textContent = 'Ошибка сервера';
+            // setTimeout(() => {
+            //     responseMessage.style.display = 'none';
+            // }, 5000); 
+        }
+    };
+
+    </script>
+    <script src="/js/logoutBtn.js"></script>
+</body>
+</html>

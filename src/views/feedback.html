@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/styles/css/nullStyle.css">
+    <link rel="stylesheet" href="/styles/css/feedback.css">
+    <title>Обратная связь</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li class = "logo-text"><a href="/">MAT</a></li>
+                    <div class="nav-links">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="admin-link" style="display: none;"><a href="/admin/users">Админ</a></li>
+                        <li id="auth-link" style="display: none;"><a href="/auth">Вход</a></li>
+                        <!-- <li id="profile-link" style="display: none;"><a href="/profile">Профиль</a></li> -->
+                        <li id="logout-link" style="display: none;"><a href="#"><img src="/img/static/icons/logoutIcon1.svg" alt="Выйти"></a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <main class="content">
+            <section class="content-section">
+                <h1>Обратная связь</h1>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="title">Тема</label>
+                        <input type="text" id="title" name="title" placeholder="Тема" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Сообщение</label>
+                        <textarea id="description" name="description" placeholder="Сообщение" required></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" disabled>Отправить</button>
+                </form>
+                <p id="response-message" style="display:none;"></p>
+            </section>
+        </main>
+        <footer class="footer">Footer</footer>
+    </div>
+    <script type="module" src="/js/contactForm.js"></script>
+    <script src="/js/checkAdminRights.js"></script>
+</body>
+</html>

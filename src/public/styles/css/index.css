@@ -1,0 +1,363 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Mono+One&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(26, 26, 26);
+  color: whitesmoke;
+  font-family: "Roboto", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  background-color: rgba(221, 221, 221, 0);
+  border-radius: 8px;
+  width: 8px;
+  overflow: hidden;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #575757;
+  border-radius: 8px;
+}
+
+/* Основные стили для семантических элементов */
+header {
+  grid-area: hd;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: #292929;
+}
+header nav {
+  height: 100%;
+  width: 66%;
+  margin: 0 auto;
+}
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  font-weight: bold;
+  font-size: 16px;
+}
+header nav ul li {
+  margin: 0 15px;
+}
+header nav ul li a {
+  color: rgba(245, 245, 245, 0.767);
+  text-decoration: none;
+}
+header nav ul li a:hover {
+  color: rgb(245, 245, 245);
+}
+header nav ul .nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 25px;
+  letter-spacing: 3px;
+  font-family: "Rubik Mono One", monospace;
+}
+.logo-text a {
+  color: #8dffd3;
+}
+.logo-text a:hover {
+  color: #3cffb4;
+}
+
+footer {
+  grid-area: ft;
+  background-color: rgb(24, 24, 24);
+}
+
+main {
+  grid-area: main;
+}
+
+aside {
+  position: fixed;
+  right: 70%;
+  top: 50px;
+  max-width: 300px;
+  height: 500px;
+  overflow-y: auto;
+  grid-area: sd;
+}
+
+/* Стили для сетки */
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-auto-rows: minmax(60px, auto);
+  grid-template-areas: "hd hd hd hd hd hd hd hd hd hd" "sd sd sd main main main main main main main" "ft ft ft ft ft ft ft ft ft ft";
+}
+
+/* Дополнительные стили для контента */
+.content-section {
+  margin-top: 30px;
+}
+
+#info-section {
+  margin-bottom: 20px;
+}
+#info-section button {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: whitesmoke;
+  background-color: #3f3f3f;
+  border-radius: 20px;
+  font-weight: bold;
+}
+#info-section button:hover {
+  background-color: rgba(102, 102, 102, 0.7137254902);
+}
+#info-section .info-section__text {
+  max-width: 60%;
+  padding: 20px;
+  border: 3px solid rgba(102, 255, 184, 0.336);
+  border-radius: 10px;
+}
+#info-section .info-section__text .abilities-block {
+  background-color: rgba(0, 255, 157, 0.5803921569);
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+}
+#info-section .abilities-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-bar {
+  display: flex;
+  margin-bottom: 20px;
+  max-width: 60%;
+  justify-content: space-between;
+}
+.filter-bar select {
+  margin-left: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #313131;
+  color: whitesmoke;
+}
+.filter-bar select:hover {
+  background-color: #3f3f3f;
+}
+.filter-bar button {
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #007447;
+  color: whitesmoke;
+}
+
+#articles-section {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 20px;
+  grid-template-columns: repeat(1, minmax(360px, 60%));
+}
+
+.article-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  background-color: #252525;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px -15px rgba(31, 31, 31, 0.425);
+}
+.article-card img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.article-card .article-title {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(219, 219, 219);
+  margin-bottom: 20px;
+}
+.article-card .article-category {
+  border-radius: 5px;
+  max-width: 80px;
+  font-weight: bold;
+  font-size: 15px;
+  color: rgba(112, 148, 142, 0.507);
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.article-card .article-description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgb(219, 219, 219);
+  margin-bottom: 15px;
+}
+.article-card .article-time {
+  align-self: flex-end;
+  font-weight: bold;
+  color: rgba(245, 245, 245, 0.267);
+}
+
+.article-card h3 {
+  margin-top: 0;
+}
+
+.side-content {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px;
+}
+.side-content a {
+  font-weight: bold;
+}
+.side-content ul {
+  margin-right: 100px;
+}
+
+.hide {
+  display: none;
+}
+
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.527);
+}
+
+.modal-content {
+  position: relative;
+  background-color: #202020;
+  border-radius: 15px;
+  margin: 5% auto;
+  padding: 40px;
+  padding-top: 60px;
+  max-width: 60%;
+}
+.modal-content img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.modal-content .article-title {
+  font-size: 28px;
+  color: rgba(245, 245, 245, 0.822);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.modal-content .article-info {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(245, 245, 245, 0.445);
+  margin-bottom: 5px;
+}
+.modal-content .article-info .article-time {
+  margin-right: 5px;
+}
+.modal-content .article-description {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgb(219, 219, 219);
+  margin-bottom: 15px;
+}
+.modal-content .article-content {
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgb(219, 219, 219);
+  margin-bottom: 15px;
+}
+.modal-content .article-content h2 {
+  font-weight: bold;
+  font-size: 26px;
+}
+.modal-content .article-content h3 {
+  font-weight: bold;
+  font-size: 24px;
+}
+.modal-content .article-content h4 {
+  font-weight: bold;
+  font-size: 22px;
+}
+.modal-content .article-content h5 {
+  font-weight: bold;
+  font-size: 20px;
+}
+.modal-content .article-content h6 {
+  font-weight: bold;
+  font-size: 18px;
+}
+.modal-content .article-content blockquote {
+  background-color: rgba(41, 41, 41, 0.5019607843);
+  padding: 20px;
+  border-left: 4px solid rgb(43, 255, 192);
+}
+
+.close {
+  right: 20px;
+  top: 15px;
+  color: #ffffff;
+  position: absolute;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ql-video {
+  width: 100%;
+  height: 500px;
+  border-radius: 20px;
+}
+
+.categories-list h3 {
+  font-size: 14px;
+  color: rgba(245, 245, 245, 0.534);
+  margin-left: 5px;
+}
+
+.categories-list img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.categories-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+.categories-list li a {
+  color: whitesmoke;
+  text-decoration: none;
+  cursor: pointer;
+}
+.categories-list li a:hover {
+  color: rgb(152, 255, 224);
+}
+
+.active a {
+  color: rgb(255, 120, 120);
+}

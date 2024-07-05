@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url("../../img/static/authBackground1.png");
+  color: whitesmoke;
+  font-family: "Roboto", sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(200px);
+          backdrop-filter: blur(200px);
+}
+
+h1 {
+  color: rgba(245, 245, 245, 0.897);
+  font-size: 55px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #00ffaa;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

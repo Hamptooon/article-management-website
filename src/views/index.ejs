@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/css/nullStyle.css">
+    <link rel="stylesheet" href="/styles/css/qlStyle.css">
+    <link rel="stylesheet" href="/styles/css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li class = "logo-text"><a href="/">MAT</a></li>
+                    <div class="nav-links">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="admin-link" style="display: none;"><a href="/admin/users">Админ</a></li>
+                        <li id="auth-link" style="display: none;"><a href="/auth">Вход</a></li>
+                        <!-- <li id="profile-link" style="display: none;"><a href="/profile">Профиль</a></li> -->
+                        <li id="logout-link" style="display: none;"><a href="#"><img src="/img/static/icons/logoutIcon1.svg" alt="Выйти"></a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <aside class="sidebar">
+            <section class="side-content">
+                
+                <ul  class="categories-list">
+                    <li><h3>Категории</h3></li>
+                    <li><img src="img/categories/allIcon.png" alt=""><a href="#" id="all-articles-link">Все</a></li>
+                    <% categories.forEach(category => { %>
+                        <li><img src="img/categories/<%= category.image_path %>" alt=""><a href="#" class="category-link" data-category-id="<%= category.id %>"><%= category.title %></a></li>
+                    <% }); %>
+                </ul>
+            </section>
+        </aside>
+        <main class="content">
+            <section class="content-section">
+                <section id="info-section">
+                    <button id="hide-info"><h2>О проекте</h2></button>
+                    <div class = "info-section__text">
+                        <div class="abilities-container">
+                            <div class="abilities-block">Управление статьями</div>
+                            <div class="abilities-block">Управление категориями</div>
+                            <div class="abilities-block">Управление пользователями</div>
+                            <div class="abilities-block">Система аутентификации</div>
+                            <div class="abilities-block">API для взаимодействия с фронтендом</div>
+                            <div class="abilities-block">Обработка файлов</div>
+                            <div class="abilities-block">Работа с базой данных</div>
+                            <div class="abilities-block">Проверка аутентификации и авторизации</div>
+                        </div>
+                    </div>
+                    
+                </section>
+                <section class="filter-bar" id="filter-section">
+                    <select name="filter" id="filter-select">
+                        <option value="all">Все время</option>
+                        <option value="24">24 часа</option>
+                        <option value="week">Неделя</option>
+                        <option value="month">Месяц</option>
+                        <option value="year">Год</option>
+                    </select>
+                    <button id="show-all">Показать все</button>
+                </section>
+                <section id="articles-section">
+                    <% articles.forEach(article => { %>
+                        <div class="article-card" data-category="<%= article.category_id %>">
+                            <h3 class = "article-title"><%= article.title %></h3>
+                            <img src="/img/articles/<%= article.image_path %>" alt="<%= article.title %>">
+                            
+                            <div class = "article-category">Категория: <%= article.categoryTitle%></div>
+                            <div class = "article-description"><%= article.description %></div>
+                            <div class = "article-time"><%= article.created_short_time %></div>
+                        </div>
+                    <% }) %>
+                </section>
+            </section>
+        </main>
+        <!-- <footer class="footer">Footer</footer> -->
+    </div>
+
+    <div id="article-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-article-content">
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/js/checkAdminRights.js"></script>
+    <script src="/js/filterArticles.js"></script>
+    <script src="/js/hideText.js"></script>
+    <script src="/js/modal.js"></script>
+    <script src="/js/adminLink.js"></script>
+    <script src="/js/logoutBtn.js"></script>
+</body>
+</html>

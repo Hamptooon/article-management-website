@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/css/adminForm.css">
+    <link rel="stylesheet" href="/styles/css/nullStyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" />
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav>
+                <ul>
+                    <li class = "logo-text"><a href="/">MAT</a></li>
+                    <div class="nav-links">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/feedback">Обратная связь</a></li>
+                        <li id="admin-link" style="display: none;"><a href="/admin/users">Админ</a></li>
+                        <li id="auth-link" style="display: none;"><a href="/auth">Вход</a></li>
+                        <!-- <li id="profile-link" style="display: none;"><a href="/profile">Профиль</a></li> -->
+                        <li id="logout-link" style="display: none;"><a href="#"><img src="/img/static/icons/logoutIcon1.svg" alt="Выйти"></a></li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
+        <main class="content">
+            <section class="content-section">
+                <h1>Админ панель</h1>
+
+                <div class="table-buttons">
+                    <a href="/admin/users">Пользователи</a>
+                    <a href="/admin/articles">Статьи</a>
+                    <a href="/admin/categories">Категории</a>
+                    <a href="/admin/feedback">Обратная связь</a>
+                </div>
+                
+                <select id="operation-select"  class = "operation-select" name="operation">
+                    <option value="delete">Удалить/Изменить</option>
+                    <option value="add">Добавить</option>
+                </select>
+
+                <div id="change-form" class="items-container">
+                    <% articles.forEach(article => { %>
+                        <div class="item-card">
+                            
+                                <div class = item-card-up>
+                                    <div class = "article-category-title"><%= article.categoryTitle %></div>
+                                    <div class = "article-title"><%= article.title %></div>
+                                    
+                                </div>
+                                <div class = "item-card-down">
+                                    <div class = "article-time"><%= article.created_short_time %></div>
+                                    <!-- <div>
+                                        <img src="/img/articles/<%= article.image_path %>" alt="">
+                                    </div> -->
+                                    <div class = "action-buttons">
+                                        <button class="edit-article " data-id="<%= article.id %>">Изменить</button>
+                                        <button class="delete-article red-btn" data-id="<%= article.id %>">Удалить</button>
+                                    </div>
+                                </div>
+                           
+                        </div>
+                    <% }); %>
+                </div>
+
+                <form id="add-form" style="display: none;" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="category_id">Категория</label>
+                        <select id="category_id" name="category_id" required>
+                            <% categories.forEach(category => { %>
+                                <option value="<%= category.id %>"><%= category.title %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Заголовок</label>
+                        <input type="text" id="title" name="title" placeholder="Заголовок" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Изображение</label>
+                        <input type="file" id="image" name="image" accept="image/*"  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Описание</label>
+                        <textarea id="description" name="description" placeholder="Описание" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Контент</label>
+                        <div id="editor-container"></div>
+                        <textarea id="content" name="content" style="display: none;" placeholder="Описание"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_hidden">Скрыть</label>
+                        <select id="is_hidden" name="is_hidden" required>
+                            <option value="0">Нет</option>
+                            <option value="1">Да</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit">Добавить</button>
+                </form>
+
+                <form id="edit-form" style="display: none;" enctype="multipart/form-data">
+                    <input type="hidden" id="edit-article-id" name="article_id">
+                    <div class="form-group">
+                        <label for="edit-category_id">Категория</label>
+                        <select id="edit-category_id" name="category_id" required>
+                            <% categories.forEach(category => { %>
+                                <option value="<%= category.id %>"><%= category.title %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-title">Заголовок</label>
+                        <input type="text" id="edit-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-image">Изображение</label>
+                        <input type="file" id="edit-image" name="image" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-description">Описание</label>
+                        <textarea id="edit-description" name="description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-content">Контент</label>
+                        <div id="edit-editor-container"></div>
+                        <textarea id="edit-content" name="content" style="display: none;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-is_hidden">Скрыть</label>
+                        <select id="edit-is_hidden" name="is_hidden" required>
+                            <option value="0">Нет</option>
+                            <option value="1">Да</option>
+                        </select>
+                    </div>
+                    <button type="submit">Изменить</button>
+                </form>
+
+                <p id="response-message" style="display: none;"></p>
+            </section>
+        </main>
+        
+    </div>
+    <script src="/js/adminArticlesPanel.js"></script>
+    <script src="/js/checkAdminRights.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+    <script src="/js/checkAdminRightsPanel.js"></script>
+    <script src="/js/logoutBtn.js"></script>
+</body>
+</html>

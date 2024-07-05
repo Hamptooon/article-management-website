@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth App</title>
+    <link rel="stylesheet" href="/styles/css/nullStyle.css">
+    <link rel="stylesheet" href="/styles/css/logStyle.css">
+</head>
+<body>
+    <div class="container">
+        <div id="login-block" class="form-block">
+            <h2>Вход</h2>
+            <form id="login-form">
+                <label for="login-email">Почта</label>
+                <input type="text" id="login-email" placeholder="Почта" required>
+                <label for="login-username">Имя</label>
+                <input type="text" id="login-username" placeholder="Имя" required>
+                <label for="login-password">Пароль</label>
+                <input type="password" id="login-password" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+            <p>Нет аккаунта? <a href="#" id="show-register">Зарегистрироваться</a></p>
+        </div>
+
+        <div id="register-block" style="display: none;" class="form-block">
+            <h2>Регистрация</h2>
+            <form id="register-form">
+                <label for="register-email">Почта</label>
+                <input type="text" id="register-email" placeholder="Почта" required>
+                <label for="register-username">Имя</label>
+                <input type="text" id="register-username" placeholder="Имя" required>
+                <label for="register-password">Пароль</label>
+                <input type="password" id="register-password" placeholder="Пароль" required>
+                <button type="submit" disabled>Зарегистрироваться</button>
+            </form>
+            <p>Уже есть аккаунт? <a href="#" id="show-login">Войти</a></p>
+        </div>
+    </div>
+    <script src="/js/auth.js"></script>
+</body>
+</html>

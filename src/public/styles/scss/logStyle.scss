@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #161616;
+    background: url('../../img/static/authBackground1.png');
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    background: #22222225;
+    padding: 50px;
+    border-radius: 20px;
+    width: 500px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    color: whitesmoke;
+
+}
+
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+input {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: #16161600;
+    color: rgb(214, 214, 214);
+    margin-top: 5px;
+    margin-bottom: 25px;
+
+    border: 2px solid rgba(255, 255, 255, 0.144);
+
+    &:focus{
+        border: 2px solid rgba(0, 255, 191, 0.521);
+    }
+}
+
+button {
+    padding: 12px;
+    font-size: 16px;
+    background: #00ffd5d8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:disabled {
+    background: #8ef5ce63;
+    cursor: not-allowed;
+}
+
+p {
+    margin: 10px 0;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+
+.form-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 350px;
+    margin: 0 auto;
+
+    h2{
+        margin-bottom: 20px;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    label{
+        margin-left: 5px;
+        font-weight: bold;
+        color: rgba(245, 245, 245, 0.767);
+    }
+
+    button{
+        margin-bottom: 10px;
+
+    }
+}
+
+
+
